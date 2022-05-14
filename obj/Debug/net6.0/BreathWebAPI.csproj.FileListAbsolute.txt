@@ -1,0 +1,7 @@
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/obj/Debug/net6.0/BreathWebAPI.csproj.AssemblyReference.cache
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/obj/Debug/net6.0/BreathWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/obj/Debug/net6.0/BreathWebAPI.AssemblyInfoInputs.cache
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/obj/Debug/net6.0/BreathWebAPI.AssemblyInfo.cs
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/obj/Debug/net6.0/BreathWebAPI.csproj.CoreCompileInputs.cache
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/obj/Debug/net6.0/BreathWebAPI.MvcApplicationPartsAssemblyInfo.cs
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/obj/Debug/net6.0/BreathWebAPI.MvcApplicationPartsAssemblyInfo.cache
