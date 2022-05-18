@@ -10,14 +10,15 @@ namespace BreathWebAPI.Models
             : base(options)
         {
         }    
-    }
+    
 
-    public DbSet<Admin> Admins { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
-    public DbSet<Post> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
-    public DbSet<Therapist> Therapists { get; set; }
+        public DbSet<Therapist> Therapists { get; set; }
 
-    public DbSet<User> Users { get; set; }
-
+        public DbSet<User> Users { get; set; }
+    }   
 }
+
