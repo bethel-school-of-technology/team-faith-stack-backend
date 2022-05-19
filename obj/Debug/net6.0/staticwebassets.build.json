@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "D5r0ZHz2ZKlRj2nmL5dJihUQBxdszTaPcOwn6ldQe8s=",
+  "Source": "BreathWebAPI",
+  "BasePath": "_content/BreathWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
