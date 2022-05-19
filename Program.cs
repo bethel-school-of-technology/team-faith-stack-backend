@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using BreathWebAPI.models;
+using BreathWebAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
