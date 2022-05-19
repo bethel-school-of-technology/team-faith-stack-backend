@@ -1,8 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using BreathWebAPI.models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddSqlite<BreathDbContext>("Data Source=BreathWebAPI.db");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
