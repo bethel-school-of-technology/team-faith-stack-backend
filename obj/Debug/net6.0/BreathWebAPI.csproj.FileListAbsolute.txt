@@ -282,3 +282,11 @@
 /Users/emilyweber/Desktop/FinalProject/BreathWebAPI/obj/Debug/net6.0/ref/BreathWebAPI.dll
 /Users/emilyweber/Desktop/FinalProject/BreathWebAPI/obj/Debug/net6.0/BreathWebAPI.pdb
 /Users/emilyweber/Desktop/FinalProject/BreathWebAPI/obj/Debug/net6.0/BreathWebAPI.genruntimeconfig.cache
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/bin/Debug/net6.0/BreathWebAPI.staticwebassets.runtime.json
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.UI.dll
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/bin/Debug/net6.0/Microsoft.Extensions.FileProviders.Embedded.dll
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/bin/Debug/net6.0/Microsoft.Extensions.Identity.Core.dll
+/Users/emilyweber/Desktop/FinalProject/BreathWebAPI/bin/Debug/net6.0/Microsoft.Extensions.Identity.Stores.dll
