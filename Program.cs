@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using BreathWebAPI.Models;
+using Microsoft.AspNetCore.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +24,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseAuthentication();
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

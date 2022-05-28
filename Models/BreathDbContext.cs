@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using BreathWebAPI.Models;
 
 namespace BreathWebAPI.Models
@@ -19,6 +21,7 @@ namespace BreathWebAPI.Models
         public DbSet<Therapist> Therapists { get; set; }
 
         public DbSet<User> Users { get; set; }
+
     }   
 }
 
