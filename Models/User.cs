@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-
+using System.Collections.Generic;
 
 
 namespace BreathWebAPI.Models
@@ -22,5 +22,7 @@ namespace BreathWebAPI.Models
 
         [Required]
         public string Password { get; set; }
+
+        public IEnumerable<Post> Posts { get; set; }
     }
 }

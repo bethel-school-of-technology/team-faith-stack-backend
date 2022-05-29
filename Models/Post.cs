@@ -17,5 +17,10 @@ namespace BreathWebAPI.Models
         public string UserName { get; set; }
 
         public string TimeStamp { get; set; }
+
+
+        public int Id { get; set; }
+
+        public User User { get; set; }
     }
 }

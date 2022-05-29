@@ -6,7 +6,7 @@ using BreathWebAPI.Models;
 namespace BreathWebAPI.Models
 {
 
-    public class BreathDbContext : DbContext 
+    public class BreathDbContext : DbContext
     {
         public BreathDbContext(DbContextOptions<BreathDbContext> options)
             : base(options)
@@ -21,6 +21,14 @@ namespace BreathWebAPI.Models
         public DbSet<Therapist> Therapists { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Post>()
+            .HasOne(p => p.User)
+            .WithMany(b => b.Posts);
+        }
 
     }   
 }
