@@ -50,7 +50,6 @@ namespace BreathWebAPI.Migrations
             modelBuilder.Entity("BreathWebAPI.Models.Post", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
@@ -68,16 +67,11 @@ namespace BreathWebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -152,7 +146,7 @@ namespace BreathWebAPI.Migrations
                 {
                     b.HasOne("BreathWebAPI.Models.User", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

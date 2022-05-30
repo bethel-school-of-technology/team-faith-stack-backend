@@ -27,7 +27,8 @@ namespace BreathWebAPI.Models
         {
             modelBuilder.Entity<Post>()
             .HasOne(p => p.User)
-            .WithMany(b => b.Posts);
+            .WithMany(u => u.Posts)
+            .HasForeignKey(p => p.Id);
         }
 
     }   

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BreathWebAPI.Migrations
 {
     [DbContext(typeof(BreathDbContext))]
-    [Migration("20220528221414_UserPostRelationship")]
+    [Migration("20220530112956_UserPostRelationship")]
     partial class UserPostRelationship
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,7 +52,6 @@ namespace BreathWebAPI.Migrations
             modelBuilder.Entity("BreathWebAPI.Models.Post", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
@@ -70,16 +69,11 @@ namespace BreathWebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -154,7 +148,7 @@ namespace BreathWebAPI.Migrations
                 {
                     b.HasOne("BreathWebAPI.Models.User", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

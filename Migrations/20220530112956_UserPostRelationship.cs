@@ -26,14 +26,6 @@ namespace BreathWebAPI.Migrations
                 table: "Posts",
                 type: "INTEGER",
                 nullable: false,
-                defaultValue: 0)
-                .Annotation("Sqlite:Autoincrement", true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "UserId",
-                table: "Posts",
-                type: "INTEGER",
-                nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddPrimaryKey(
@@ -41,15 +33,10 @@ namespace BreathWebAPI.Migrations
                 table: "Posts",
                 column: "Id");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Posts_UserId",
-                table: "Posts",
-                column: "UserId");
-
             migrationBuilder.AddForeignKey(
-                name: "FK_Posts_Users_UserId",
+                name: "FK_Posts_Users_Id",
                 table: "Posts",
-                column: "UserId",
+                column: "Id",
                 principalTable: "Users",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
@@ -58,23 +45,15 @@ namespace BreathWebAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Posts_Users_UserId",
+                name: "FK_Posts_Users_Id",
                 table: "Posts");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Posts",
                 table: "Posts");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Posts_UserId",
-                table: "Posts");
-
             migrationBuilder.DropColumn(
                 name: "Id",
-                table: "Posts");
-
-            migrationBuilder.DropColumn(
-                name: "UserId",
                 table: "Posts");
 
             migrationBuilder.AlterColumn<int>(
