@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BreathWebAPI.Migrations
 {
     [DbContext(typeof(BreathDbContext))]
-    [Migration("20220528144908_RequiredAttributes")]
-    partial class RequiredAttributes
+    [Migration("20220530231241_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,13 +51,15 @@ namespace BreathWebAPI.Migrations
 
             modelBuilder.Entity("BreathWebAPI.Models.Post", b =>
                 {
-                    b.Property<int>("PostId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("Id")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("TimeStamp")
                         .IsRequired()
@@ -71,7 +73,7 @@ namespace BreathWebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PostId");
+                    b.HasKey("Id");
 
                     b.ToTable("Posts");
                 });
@@ -140,6 +142,22 @@ namespace BreathWebAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("BreathWebAPI.Models.Post", b =>
+                {
+                    b.HasOne("BreathWebAPI.Models.User", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BreathWebAPI.Models.User", b =>
+                {
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }
