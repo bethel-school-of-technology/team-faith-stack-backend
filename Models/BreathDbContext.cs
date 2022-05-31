@@ -2,6 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using BreathWebAPI.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace BreathWebAPI.Models
 {
@@ -28,7 +31,8 @@ namespace BreathWebAPI.Models
             modelBuilder.Entity<Post>()
             .HasOne(p => p.User)
             .WithMany(u => u.Posts)
-            .HasForeignKey(p => p.Id);
+            .HasForeignKey(p => p.UserForeignKey);
+
         }
 
     }   

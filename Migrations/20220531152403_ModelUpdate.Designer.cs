@@ -2,6 +2,7 @@
 using BreathWebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BreathWebAPI.Migrations
 {
     [DbContext(typeof(BreathDbContext))]
-    partial class BreathDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220531152403_ModelUpdate")]
+    partial class ModelUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -49,13 +51,16 @@ namespace BreathWebAPI.Migrations
 
             modelBuilder.Entity("BreathWebAPI.Models.Post", b =>
                 {
-                    b.Property<int>("PostId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("TimeStamp")
                         .IsRequired()
@@ -65,16 +70,16 @@ namespace BreathWebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserForeignKey")
+                    b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PostId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("UserForeignKey");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -149,7 +154,7 @@ namespace BreathWebAPI.Migrations
                 {
                     b.HasOne("BreathWebAPI.Models.User", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("UserForeignKey")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -6,7 +6,7 @@ namespace BreathWebAPI.Models
     public class Post {
         
         public int PostId {get; set; }
-        
+
         [Required]
         public string Title { get; set; }
 
@@ -16,9 +16,7 @@ namespace BreathWebAPI.Models
 
         public string TimeStamp { get; set; }
 
-        
-        public int Id { get; set; }
-
+        public int UserForeignKey { get; set; }
         public User User { get; set; } 
     }
 }
