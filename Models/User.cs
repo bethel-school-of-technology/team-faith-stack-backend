@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
 
 
 namespace BreathWebAPI.Models
@@ -12,7 +11,7 @@ namespace BreathWebAPI.Models
         public string UserName { get; set; }
 
         [Required]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } 
 
         [Required]
         public string LastName { get; set; }

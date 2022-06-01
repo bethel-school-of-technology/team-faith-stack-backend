@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 
-
 namespace BreathWebAPI.Models
 {
     public class Post {
