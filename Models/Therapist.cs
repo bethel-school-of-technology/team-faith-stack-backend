@@ -9,7 +9,7 @@ namespace BreathWebAPI.Models
         public int TherapistId { get; set; }
 
         [Required]
-        public string FullName { get; set; }
+        public string FullName { get; set; } 
 
         [Required]
         public string BusinessName { get; set; }
