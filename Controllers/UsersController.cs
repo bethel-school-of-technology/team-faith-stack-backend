@@ -112,7 +112,7 @@ namespace BreathWebAPI.Controllers
                     issuer: "https://localhost:7102",
                     audience: "https://localhost:7102",
                     claims: new List<Claim>(),
-                    expires: DateTime.Now.AddMinutes(5),
+                    expires: DateTime.Now.AddMinutes(120),
                     signingCredentials: signinCredentials
           
                 );
