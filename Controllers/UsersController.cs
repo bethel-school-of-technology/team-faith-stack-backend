@@ -22,7 +22,7 @@ namespace BreathWebAPI.Controllers
         }
 
         // GET: api/Users
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
           if (_context.Users == null)
@@ -52,7 +52,7 @@ namespace BreathWebAPI.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task<IActionResult> PutUser(int id, User user)
         {
             if (id != user.Id)
