@@ -22,7 +22,7 @@ namespace BreathWebAPI.Controllers
         }
 
         // GET: api/Users
-        [HttpGet, Authorize]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
           if (_context.Users == null)
@@ -52,7 +52,7 @@ namespace BreathWebAPI.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
             if (id != user.Id)
@@ -83,54 +83,56 @@ namespace BreathWebAPI.Controllers
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPost, Authorize]
-        //public async Task<ActionResult<User>> PostUser(User user)
-        //{
-          //if (_context.Users == null)
-          //{
-              //return Problem("Entity set 'BreathDbContext.Users'  is null.");
-          //}
-            //_context.Users.Add(user);
-            //await _context.SaveChangesAsync();
-
-            //return CreatedAtAction("GetUser", new { id = user.Id }, user);
-        //}
-
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
           if (_context.Users == null)
           {
-              return BadRequest("Invalid client request");
+              return Problem("Entity set 'BreathDbContext.Users'  is null.");
           }
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
 
-          if (user.UserName == user.UserName && user.Password == user.Password && user.FirstName == user.FirstName && user.LastName == user.LastName && user.Email == user.Email)
-          {
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+        }
+
+        //POST: api/Users
+        //To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("login")]
+        public async Task<ActionResult<User>> PostUser(Login login)
+        {
+        //   if (_context.Users == null)
+        //   {
+        //       return BadRequest("Invalid client request");
+        //   }
+
+            var user = _context.Users.Where(u => u.UserName == login.UserName && u.Password == login.Password).FirstOrDefault();
+
+
+            if (user == null)
+            {
+                return Unauthorized();
+            } 
+            else {
+
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 var tokeOptions = new JwtSecurityToken(
                     issuer: "https://localhost:7102",
                     audience: "https://localhost:7102",
                     claims: new List<Claim>(),
-                    expires: DateTime.Now.AddMinutes(120),
+                    expires: DateTime.Now.AddDays(30),
                     signingCredentials: signinCredentials
-          
+            
                 );
+            
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+
+                return Ok(new AuthResponse { Token = tokenString });
+            
+            }
           
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-
-            return Ok(new AuthResponse { Token = tokenString });
-          }
-
-          return Unauthorized();
-
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
-
         }
-
 
         // DELETE: api/Users/5
         [HttpDelete("{id}"), Authorize]
