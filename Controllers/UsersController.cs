@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+//using BreathWebAPI.Services;
 
 namespace BreathWebAPI.Controllers
 {
@@ -22,7 +23,8 @@ namespace BreathWebAPI.Controllers
         }
 
         // GET: api/Users
-        [HttpGet, Authorize]
+        [Authorize]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
           if (_context.Users == null)
@@ -33,7 +35,8 @@ namespace BreathWebAPI.Controllers
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}"), Authorize]
+        [Authorize]
+        [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
           if (_context.Users == null)
@@ -52,7 +55,8 @@ namespace BreathWebAPI.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}"), Authorize]
+        [Authorize]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
             if (id != user.Id)
@@ -90,6 +94,9 @@ namespace BreathWebAPI.Controllers
           {
               return Problem("Entity set 'BreathDbContext.Users'  is null.");
           }
+            //This line is here to add the hash to the password in the database
+            //user.Password = UserAuth.Sha256(user.Password);
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
@@ -101,19 +108,22 @@ namespace BreathWebAPI.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<User>> PostUser(Login login)
         {
-        //   if (_context.Users == null)
-        //   {
-        //       return BadRequest("Invalid client request");
-        //   }
 
             var user = _context.Users.Where(u => u.UserName == login.UserName && u.Password == login.Password).FirstOrDefault();
 
-
             if (user == null)
             {
-                return Unauthorized();
+                //return user;
+                 return Unauthorized();
             } 
             else {
+
+                //This code is added for the hashed password. 
+                //var hashedPassword = UserAuth.Sha256(login.Password);
+
+                //if (user.Password != hashedPassword) {
+                //return user;
+                    //return Unauthorized();
 
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -131,11 +141,42 @@ namespace BreathWebAPI.Controllers
                 return Ok(new AuthResponse { Token = tokenString });
             
             }
+
+            /*var user = _context.Users.Where(u => u.UserName == login.UserName && u.Password == login.Password).SingleOrDefaultAsync();
+                    // attempt to get a user with the matching username from DB.
+                //User GetUser = await _context.Users.SingleOrDefaultAsync(u => u.UserName == login.UserName);
+                    // if no match on username skip password check.
+                if (user != null) {
+                        // compare hashed passwords.
+                    if (UserAuth.Sha256Check(login.Password, login.Password)) {
+
+                            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+                            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                            var tokeOptions = new JwtSecurityToken(
+                                issuer: "https://localhost:7102",
+                                audience: "https://localhost:7102",
+                                claims: new List<Claim>(),
+                                expires: DateTime.Now.AddDays(30),
+                                signingCredentials: signinCredentials
+            
+                            );
+            
+                            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+
+                            return Ok(new AuthResponse { Token = tokenString });
+                    }
+                        else {
+                            return Unauthorized();
+                        }
+                    }
+                }
+            }*/
           
         }
 
         // DELETE: api/Users/5
-        [HttpDelete("{id}"), Authorize]
+        [Authorize]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             if (_context.Users == null)
