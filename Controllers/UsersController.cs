@@ -49,7 +49,7 @@ namespace BreathWebAPI.Controllers
             {
                 return NotFound();
             }
-
+            user.Password = null;
             return user;
         }
 
@@ -138,39 +138,9 @@ namespace BreathWebAPI.Controllers
             
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
 
-                return Ok(new AuthResponse { Token = tokenString });
+                return Ok(new AuthResponse { Token = tokenString, UserId = user.Id });
             
             }
-
-            /*var user = _context.Users.Where(u => u.UserName == login.UserName && u.Password == login.Password).SingleOrDefaultAsync();
-                    // attempt to get a user with the matching username from DB.
-                //User GetUser = await _context.Users.SingleOrDefaultAsync(u => u.UserName == login.UserName);
-                    // if no match on username skip password check.
-                if (user != null) {
-                        // compare hashed passwords.
-                    if (UserAuth.Sha256Check(login.Password, login.Password)) {
-
-                            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
-                            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                            var tokeOptions = new JwtSecurityToken(
-                                issuer: "https://localhost:7102",
-                                audience: "https://localhost:7102",
-                                claims: new List<Claim>(),
-                                expires: DateTime.Now.AddDays(30),
-                                signingCredentials: signinCredentials
-            
-                            );
-            
-                            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-
-                            return Ok(new AuthResponse { Token = tokenString });
-                    }
-                        else {
-                            return Unauthorized();
-                        }
-                    }
-                }
-            }*/
           
         }
 
