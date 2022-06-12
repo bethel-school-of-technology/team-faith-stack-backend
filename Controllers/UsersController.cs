@@ -23,7 +23,7 @@ namespace BreathWebAPI.Controllers
         }
 
         // GET: api/Users
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
@@ -35,7 +35,7 @@ namespace BreathWebAPI.Controllers
         }
 
         // GET: api/Users/5
-        [Authorize]
+        //[Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -55,7 +55,7 @@ namespace BreathWebAPI.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [Authorize]
+        //[Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
@@ -145,7 +145,7 @@ namespace BreathWebAPI.Controllers
         }
 
         // DELETE: api/Users/5
-        [Authorize]
+        //[Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
